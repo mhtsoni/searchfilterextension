@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Search Results Filter",
+  "version": "1.0.0",
+  "description": "Filter search results based on location and user preferences",
+  "permissions": [
+    "storage",
+    "geolocation",
+    "webNavigation",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.google.com/*"
+  ],
+  "icons": {
+    "16": "public/icons/logo-16.png",
+    "48": "public/icons/logo-48.png",
+    "128": "public/icons/logo-128.png"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "public/icons/logo-16.png",
+      "48": "public/icons/logo-48.png",
+      "128": "public/icons/logo-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.google.com/search*"],
+      "js": ["src/content.ts"]
+    }
+  ]
+}
