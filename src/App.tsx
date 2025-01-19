@@ -160,13 +160,13 @@ function App() {
           <div className="space-y-2">
             <input
               type="text"
-              value={editLocation}
+              value={Object.entries(blockedSites.fullBannedList).map(([location]) => location)[0]}
               onChange={(e) => setEditLocation(e.target.value)}
               placeholder="Location (e.g., US, UK)"
               className="w-full px-3 py-2 border rounded"
             />
             <textarea
-              value={editDomains}
+              value={Object.entries(blockedSites.fullBannedList).map(([location, domains]) => domains.join(', '))}
               onChange={(e) => setEditDomains(e.target.value)}
               placeholder="Domains (comma-separated)"
               className="w-full px-3 py-2 border rounded h-24"
@@ -177,15 +177,6 @@ function App() {
             >
               Update Location Bans
             </button>
-          </div>
-          <div className="mt-4">
-            <h3 className="font-medium mb-2">Current Location Bans:</h3>
-            {Object.entries(blockedSites.fullBannedList).map(([location, domains]) => (
-              <div key={location} className="mb-2 p-2 bg-white rounded shadow-sm">
-                <div className="font-medium">{location}</div>
-                <div className="text-sm text-gray-600">{domains.join(', ')}</div>
-              </div>
-            ))}
           </div>
         </div>
       ) : (
